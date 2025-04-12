@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\Festivos.Infraestructura.Persistencia\Festivos.Infraestructura.Persistencia.csproj" />
+    <ProjectReference Include="..\Festivos.Core\Festivos.Core.csproj" />
+    <ProjectReference Include="..\Festivos.Dominio\Festivos.Dominio.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

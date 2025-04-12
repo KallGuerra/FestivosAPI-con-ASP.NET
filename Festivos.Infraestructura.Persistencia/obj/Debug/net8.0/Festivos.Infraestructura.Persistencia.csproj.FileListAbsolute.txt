@@ -1,0 +1,17 @@
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.AssemblyInfoInputs.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.AssemblyInfo.cs
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Infraestructura.Persistencia.deps.json
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Infraestructura.Persistencia.runtimeconfig.json
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Infraestructura.Persistencia.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Infraestructura.Persistencia.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Dominio.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\bin\Debug\net8.0\Festivos.Dominio.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.csproj.AssemblyReference.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.EA5477F0.Up2Date
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\refint\Festivos.Infraestructura.Persistencia.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.genruntimeconfig.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\ref\Festivos.Infraestructura.Persistencia.dll

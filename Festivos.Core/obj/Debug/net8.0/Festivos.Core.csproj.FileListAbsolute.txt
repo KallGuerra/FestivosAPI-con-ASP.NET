@@ -1,0 +1,15 @@
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.AssemblyInfoInputs.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.AssemblyInfo.cs
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\bin\Debug\net8.0\Festivos.Core.deps.json
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\bin\Debug\net8.0\Festivos.Core.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\bin\Debug\net8.0\Festivos.Core.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\bin\Debug\net8.0\Festivos.Dominio.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\bin\Debug\net8.0\Festivos.Dominio.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.csproj.AssemblyReference.cache
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.FBCB5417.Up2Date
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\refint\Festivos.Core.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\Festivos.Core.pdb
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Core\obj\Debug\net8.0\ref\Festivos.Core.dll

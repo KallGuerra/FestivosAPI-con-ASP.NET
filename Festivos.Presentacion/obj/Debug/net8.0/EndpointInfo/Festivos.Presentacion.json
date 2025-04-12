@@ -1,0 +1,32 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Festivos.Presentacion",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/festivos/esfestiva/{fecha}": {
+      "get": {
+        "tags": [
+          "Festivo"
+        ],
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

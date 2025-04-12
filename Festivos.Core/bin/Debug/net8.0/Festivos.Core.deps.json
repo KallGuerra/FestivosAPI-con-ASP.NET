@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Festivos.Core/1.0.0": {
+        "dependencies": {
+          "Festivos.Dominio": "1.0.0"
+        },
+        "runtime": {
+          "Festivos.Core.dll": {}
+        }
+      },
+      "Festivos.Dominio/1.0.0": {
+        "runtime": {
+          "Festivos.Dominio.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Festivos.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Festivos.Dominio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
