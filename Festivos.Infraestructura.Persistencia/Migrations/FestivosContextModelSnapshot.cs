@@ -46,6 +46,40 @@ namespace Festivos.Infraestructura.Persistencia.Migrations
 
                     b.ToTable("Festivo");
                 });
+
+            modelBuilder.Entity("Festivos.Dominio.Entidades.FestivoRegla", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Dia")
+                        .HasColumnType("int")
+                        .HasColumnName("Dia");
+
+                    b.Property<int?>("DiasDesdePascua")
+                        .HasColumnType("int")
+                        .HasColumnName("DiasDesdePascua");
+
+                    b.Property<int?>("Mes")
+                        .HasColumnType("int")
+                        .HasColumnName("Mes");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Nombre");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("int")
+                        .HasColumnName("Tipo");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FestivoRegla");
+                });
 #pragma warning restore 612, 618
         }
     }

@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\USUARIO\\source\\repos\\FestivosAPI\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3557F78A-D6AA-4033-A7D4-772239FA6E22}|Festivos.Infraestructura.Repositorios\\Festivos.Infraestructura.Repositorios.csproj|c:\\users\\usuario\\source\\repos\\festivosapi\\festivos.infraestructura.repositorios\\festivorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3557F78A-D6AA-4033-A7D4-772239FA6E22}|Festivos.Infraestructura.Repositorios\\Festivos.Infraestructura.Repositorios.csproj|solutionrelative:festivos.infraestructura.repositorios\\festivorepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -18,6 +23,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FestivoRepositorio.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\source\\repos\\FestivosAPI\\Festivos.Infraestructura.Repositorios\\FestivoRepositorio.cs",
+              "RelativeDocumentMoniker": "Festivos.Infraestructura.Repositorios\\FestivoRepositorio.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\source\\repos\\FestivosAPI\\Festivos.Infraestructura.Repositorios\\FestivoRepositorio.cs",
+              "RelativeToolTip": "Festivos.Infraestructura.Repositorios\\FestivoRepositorio.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwGIAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-12T17:34:29.678Z",
+              "EditorCaption": ""
             }
           ]
         },

@@ -17,3 +17,4 @@ C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Repositorios\
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Repositorios\obj\Debug\net8.0\refint\Festivos.Infraestructura.Repositorios.dll
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Repositorios\obj\Debug\net8.0\Festivos.Infraestructura.Repositorios.pdb
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Repositorios\obj\Debug\net8.0\ref\Festivos.Infraestructura.Repositorios.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Repositorios\obj\Debug\net8.0\Festivos.Infraestructura.Repositorios.sourcelink.json

@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Festivos.Presentacion.Controllers.FestivoController",
+    "Method": "EsFestivo",
+    "RelativePath": "api/festivos/es-festivo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fecha",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Festivos.Presentacion.Controllers.FestivoController",
     "Method": "EsFestiva",
     "RelativePath": "api/festivos/esfestiva/{fecha}",
     "HttpMethod": "GET",

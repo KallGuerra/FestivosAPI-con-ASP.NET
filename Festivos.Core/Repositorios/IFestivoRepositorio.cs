@@ -19,5 +19,7 @@ namespace Festivos.Core.Repositorios
         // Opcional: métodos para agregar o listar festivos.
         Task<Festivo> Agregar(Festivo festivo);
         Task<IEnumerable<Festivo>> ObtenerTodos();
+        Task<IEnumerable<FestivoRegla>> ObtenerReglasAsync();
+
     }
 }

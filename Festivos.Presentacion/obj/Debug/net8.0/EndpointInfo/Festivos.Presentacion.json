@@ -26,6 +26,28 @@
           }
         }
       }
+    },
+    "/api/festivos/es-festivo": {
+      "get": {
+        "tags": [
+          "Festivo"
+        ],
+        "parameters": [
+          {
+            "name": "fecha",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": { }

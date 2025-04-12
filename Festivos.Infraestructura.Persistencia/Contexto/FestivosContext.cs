@@ -12,6 +12,8 @@ namespace Festivos.Infraestructura.Persistencia.Contexto
         }
 
         public DbSet<Festivo> Festivos { get; set; }
+        public DbSet<FestivoRegla> FestivoReglas { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,4 +1,5 @@
-﻿using Festivos.Core.Servicios;
+﻿using Festivos.Aplicacion.Servicios;
+using Festivos.Core.Servicios;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Festivos.Presentacion.Controllers
@@ -30,6 +31,13 @@ namespace Festivos.Presentacion.Controllers
 
             bool esFestiva = await festivoServicio.EsFestiva(fechaConvertida);
             return Ok(new { Fecha = fechaConvertida.ToString("yyyy-MM-dd"), EsFestiva = esFestiva });
+        }
+
+        [HttpGet("es-festivo")]
+        public async Task<IActionResult> EsFestivo([FromQuery] DateTime fecha)
+        {
+            bool esFestivo = await festivoServicio.EsFestiva(fecha);
+            return Ok(new { fecha = fecha.ToString("yyyy-MM-dd"), esFestivo });
         }
     }
 }

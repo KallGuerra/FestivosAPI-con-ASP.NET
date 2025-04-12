@@ -15,3 +15,4 @@ C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.pdb
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.genruntimeconfig.cache
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\ref\Festivos.Infraestructura.Persistencia.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Infraestructura.Persistencia\obj\Debug\net8.0\Festivos.Infraestructura.Persistencia.sourcelink.json

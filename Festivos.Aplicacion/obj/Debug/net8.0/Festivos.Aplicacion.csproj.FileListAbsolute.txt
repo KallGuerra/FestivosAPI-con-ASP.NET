@@ -15,3 +15,4 @@ C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Aplicacion\obj\Debug\net8.0\F
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Aplicacion\obj\Debug\net8.0\refint\Festivos.Aplicacion.dll
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Aplicacion\obj\Debug\net8.0\Festivos.Aplicacion.pdb
 C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Aplicacion\obj\Debug\net8.0\ref\Festivos.Aplicacion.dll
+C:\Users\USUARIO\source\repos\FestivosAPI\Festivos.Aplicacion\obj\Debug\net8.0\Festivos.Aplicacion.sourcelink.json
