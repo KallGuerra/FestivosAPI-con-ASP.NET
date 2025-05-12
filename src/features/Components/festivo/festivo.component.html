@@ -1,0 +1,55 @@
+
+<!-- Zona de búsqueda -->
+<div class="busqueda-container" style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+  <mat-form-field appearance="outline" style="min-width: 200px;">
+    <mat-label>Opción de Búsqueda</mat-label>
+    <mat-select [(value)]="opcionBusqueda">
+      <mat-option *ngFor="let opcion of opcionesBusqueda; let i = index" [value]="i">
+        {{ opcion }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="flex: 1; min-width: 200px;">
+    <mat-label>Buscar</mat-label>
+    <input matInput [(ngModel)]="textoBusqueda" placeholder="Escriba aquí...">
+  </mat-form-field>
+
+  <button mat-flat-button color="primary" (click)="buscar()" style="height: 56px;">
+    <mat-icon>search</mat-icon>
+    Buscar
+  </button>
+</div>
+
+<!-- Zona de acciones -->
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+  <button mat-raised-button color="primary" (click)="agregar()">
+    <mat-icon>add</mat-icon>
+    Agregar
+  </button>
+
+  <button mat-raised-button color="accent" (click)="modificar()" [disabled]="!festivoEscogido">
+    <mat-icon>edit</mat-icon>
+    Modificar
+  </button>
+
+  <button mat-raised-button color="warn" (click)="verificarEliminar()" [disabled]="!festivoEscogido">
+    <mat-icon>delete</mat-icon>
+    Eliminar
+  </button>
+
+  <button mat-raised-button color="accent" routerLink="/tipos">Configuración de Tipos</button>
+</div>
+
+
+
+
+
+<!-- Tabla -->
+<ngx-datatable class="material striped" [rows]="festivos" [columns]="columnas"
+  [headerHeight]="50" [footerHeight]="50" [limit]="TAMANO" [selectionType]="tipoSeleccion.single"
+  [columnMode]="modoColumna.force" (activate)="escoger($event)" [selected]="[festivoEscogido]"
+  style="box-shadow: 0 2px 8px rgba(0,0,0,0.15); border-radius: 8px;">
+</ngx-datatable>
+
+

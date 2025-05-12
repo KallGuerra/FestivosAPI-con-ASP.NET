@@ -14,7 +14,6 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
-
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -29,7 +28,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   exports: [
     MatToolbarModule,
-    MatCardModule, 
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -44,7 +43,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatMenuModule,
     MatSelectModule,
     MatCheckboxModule,
-
     MatNativeDateModule,
     MatDatepickerModule,
     MatAutocompleteModule,

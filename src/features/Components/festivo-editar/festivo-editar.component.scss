@@ -1,0 +1,21 @@
+.formulario-festivo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  .titulo-dialogo {
+    color: #003161;
+    margin-bottom: 12px;
+  }
+}
+
+::ng-deep .mat-dialog-container {
+  background-color: #FFF4B7;
+  color: #000B58;
+  border-radius: 12px;
+}

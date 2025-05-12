@@ -1,0 +1,134 @@
+// variables.scss
+$color-primario: #000B58;
+$color-secundario: #003161;
+$color-enfasis: #006A67;
+$color-fondo: #FFF4B7;
+
+$radius-base: 8px;
+$shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+// Estilo general del formulario y botones
+.busqueda-container {
+  background-color: $color-fondo;
+  padding: 1rem;
+  border-radius: $radius-base;
+  box-shadow: $shadow-soft;
+
+  mat-form-field {
+    background-color: white;
+    border-radius: $radius-base;
+    padding: 0.5rem;
+  }
+
+  button {
+    font-weight: 600;
+    border-radius: $radius-base;
+    mat-icon {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+button.mat-raised-button {
+  box-shadow: $shadow-soft;
+  border-radius: $radius-base;
+}
+
+button[color="primary"] {
+  background-color: $color-primario;
+  color: white;
+
+  &:hover {
+    background-color: darken($color-primario, 5%);
+  }
+}
+
+button[color="accent"] {
+  background-color: $color-enfasis;
+  color: white;
+
+  &:hover {
+    background-color: darken($color-enfasis, 5%);
+  }
+}
+
+::ng-deep ngx-datatable {
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+
+  .datatable-header {
+    background-color: #003161;
+    color: #FFF4B7;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .datatable-header-cell {
+    padding: 12px;
+    font-size: 13px;
+    border-right: 1px solid #00284d;
+  }
+
+  .datatable-body-row {
+    background-color: white;
+    transition: background-color 0.3s ease;
+  }
+
+  .datatable-body-row:hover {
+    background-color: #f3f9ff;
+  }
+
+  .datatable-body-cell {
+    padding: 10px;
+    color: #000;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .datatable-footer {
+    background-color: #000B58;
+    color: #FFF4B7;
+    padding: 8px 12px;
+    font-size: 18px;
+  }
+
+  .datatable-row-wrapper {
+    border-left: 4px solid transparent;
+  }
+
+  .datatable-row-wrapper.selected {
+    border-left: 4px solid #006A67;
+    background-color: #e9f7f4;
+  }
+
+  .datatable-scroll {
+    scrollbar-color: #006A67 #e0e0e0;
+    scrollbar-width: thin;
+  }
+}
+
+
+
+ngx-datatable.material {
+  background-color: white;
+  border-radius: $radius-base;
+  box-shadow: $shadow-soft;
+
+  .datatable-header {
+    background-color: $color-secundario;
+    color: white;
+    font-weight: bold;
+  }
+
+  .datatable-body-row {
+    &:hover {
+      background-color: lighten($color-fondo, 10%);
+    }
+  }
+
+  .datatable-row-center {
+    font-size: 14px;
+  }
+}

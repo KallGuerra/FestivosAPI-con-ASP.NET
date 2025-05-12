@@ -1,9 +1,8 @@
-import { Tipo } from '../../../Shared/Entities/Tipo';
+import { Tipo } from '../../Shared/Entities/Tipo';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../Environments/Environment';
-
+import { environment } from '../../Environments/Environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +11,7 @@ export class TipoService {
   private url: string;
 
   constructor(private http: HttpClient) {
-    this.url = `${environment.urlService}tipos/`;
+    this.url = `${environment.urlService}Tipo/`;
    }
 
   public listar(): Observable<Tipo[]> {
@@ -29,5 +28,9 @@ export class TipoService {
 
   public modificar(Tipo: Tipo): Observable<Tipo> {
     return this.http.put<Tipo>(`${this.url}modificar`, Tipo);
+  }
+
+  public eliminar(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.url}eliminar/${id}`);
   }
 }
