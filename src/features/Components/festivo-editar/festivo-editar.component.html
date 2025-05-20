@@ -1,38 +1,44 @@
-<p>festivo-editar works!</p>
-<h1 mat-dialog-title>{{ form.value.id === 0 ? 'Agregar Festivo' : 'Editar Festivo' }}</h1>
+<div mat-dialog-content class="dialog-content">
+  <h2 class="dialog-title">{{ datos.encabezado }}</h2>
 
-<div mat-dialog-content>
-  <form [formGroup]="form">
-    <mat-form-field class="full-width">
+  <div class="form-container">
+
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="nombre" required />
+      <input matInput [(ngModel)]="datos.festivo.nombre" required>
     </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Día</mat-label>
-      <input matInput type="number" formControlName="dia" />
-    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="16px" fxLayout.lt-md="column">
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Día</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.festivo.dia" min="1" max="31" required>
+      </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Mes</mat-label>
-      <input matInput type="number" formControlName="mes" />
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="half-width">
+        <mat-label>Mes</mat-label>
+        <input matInput type="number" [(ngModel)]="datos.festivo.mes" min="1" max="12" required>
+      </mat-form-field>
+    </div>
 
-    <mat-form-field class="full-width">
+    <mat-form-field appearance="fill" class="full-width">
       <mat-label>Días Pascua</mat-label>
-      <input matInput type="number" formControlName="diasPascua" />
+      <input matInput type="number" [(ngModel)]="datos.festivo.diasPascua" required>
     </mat-form-field>
 
-    <mat-form-field class="full-width">
-      <mat-label>Tipo ID</mat-label>
-      <input matInput type="number" formControlName="idTipo" required />
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Tipo de festivo</mat-label>
+      <mat-select [(ngModel)]="datos.festivo.tipo" (selectionChange)="seleccionarTipo($event)" required>
+        <mat-option *ngFor="let tipo of datos.tipo" [value]="tipo">
+          {{ tipo.nombre }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-  </form>
+
+  </div>
 </div>
 
-<div mat-dialog-actions align="end">
-  <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="guardar()" [disabled]="form.invalid">
-    Guardar
-  </button>
+<div mat-dialog-actions align="end" class="dialog-actions">
+  <button mat-stroked-button color="primary" (click)="cerrar()">Cancelar</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="datos">Aceptar</button>
 </div>
+

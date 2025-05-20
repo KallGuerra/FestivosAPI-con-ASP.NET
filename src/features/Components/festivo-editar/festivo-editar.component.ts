@@ -1,46 +1,67 @@
-import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ReferenciasMaterialModule } from '../../../Shared/Modules/referencias-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Festivo } from '../../../Shared/Entities/Festivo';
-import { FestivoService } from '../../../Core/servicios/festivo.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Tipo } from '../../../Shared/Entities/Tipo';
+import { NgFor } from '@angular/common';
+import { TipoService } from '../../../Core/servicios/tipo.service';
+import { MatSelectChange } from '@angular/material/select';
+
+export interface DatosEdicionFestivo {
+  encabezado: string;
+  festivo: Festivo;
+  tipo: Tipo[];
+}
+
 @Component({
   selector: 'app-festivo-editar',
-  imports: [ReferenciasMaterialModule, ReactiveFormsModule],
+  imports: [ReferenciasMaterialModule, FormsModule, ReactiveFormsModule, NgFor],
   templateUrl: './festivo-editar.component.html',
-  styleUrl: './festivo-editar.component.scss'
+  styleUrl: './festivo-editar.component.scss',
 })
-export class FestivoEditarComponent {
-  form: FormGroup;
+export class FestivoEditarComponent implements OnInit {
+  tipoSeleccionado: Tipo | null = null;
 
   constructor(
-    private fb: FormBuilder,
-    private dialogRef: MatDialogRef<FestivoEditarComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { festivo: Festivo },
-    private festivoService: FestivoService
-  ) {
-    this.form = this.fb.group({
-      id: [data.festivo?.Id || 0],
-      nombre: [data.festivo?.nombre || '', Validators.required],
-      dia: [data.festivo?.dia || 0],
-      mes: [data.festivo?.mes || 0],
-      diasPascua: [data.festivo?.diasPascua || 0],
-      idTipo: [data.festivo?.idTipo || 0, Validators.required]
+    @Inject(MAT_DIALOG_DATA) public datos: DatosEdicionFestivo,
+    private ventanaDialogo: MatDialogRef<FestivoEditarComponent>,
+    private tipoService: TipoService
+  ) {}
+
+  ngOnInit(): void {
+    this.cargarTipos();
+  }
+
+  public cargarTipos(): void {
+    this.tipoService.listar().subscribe({
+      next: (tipos) => {
+        this.datos.tipo = tipos;
+        // Solo establecer el tipo inicial si no hay uno seleccionado
+        /* if (!this.datos.festivo.idTipo && tipos.length > 0) {
+          this.datos.festivo.idTipo = tipos[0].Id;
+          this.datos.festivo.tipo = tipos[0];
+        } */
+      },
+      error: (error) => {
+        window.alert(`Error al cargar tipos: ${error.message}`);
+      },
     });
   }
 
-  guardar(): void {
-    const festivo: Festivo = this.form.value;
+  public seleccionarTipo(event: MatSelectChange): void {
+    const tipoSeleccionado = event.value as Tipo;
 
-    const obs = festivo.Id === 0
-      ? this.festivoService.agregar(festivo)
-      : this.festivoService.modificar(festivo);
-
-    obs.subscribe(() => this.dialogRef.close(true));
+    if (tipoSeleccionado) {
+      this.datos.festivo.tipo = tipoSeleccionado;
+      this.datos.festivo.idTipo = tipoSeleccionado.Id;
+      window.alert(`Has seleccionado el tipo: ${tipoSeleccionado.nombre}`);
+    } else {
+      window.alert('Tipo no encontrado');
+    }
   }
 
-  cancelar(): void {
-    this.dialogRef.close(false);
+  public cerrar() {
+    this.ventanaDialogo.close(this.datos);
   }
 }

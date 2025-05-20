@@ -1,0 +1,26 @@
+.dialog-content {
+  padding: 16px;
+}
+
+.dialog-title {
+  margin-bottom: 16px;
+  color: #003161; /* o el color de tu paleta */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .half-width {
+    width: 48%;
+  }
+}
+
+.dialog-actions {
+  padding: 16px;
+}

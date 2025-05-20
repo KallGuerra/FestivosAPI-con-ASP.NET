@@ -1,183 +1,115 @@
-.container-fluid {
-  padding: 24px;
-  background-color: #ffffff00; // Light background color
-  min-height: 100vh;
-}
-
-.card {
-  background-color: #4a9ca650;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-bottom: 24px;
-  overflow: hidden; // Ensure borders are within shadow
-}
-
-.card-header {
-  background-color: #007bff; // Primary color header
-  color: white;
-  padding: 16px 24px;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-
-.card-body {
-  padding: 24px;
+:host {
+  display:flow-root;
+  padding: 20px;
+  background: #949a9f28;
 }
 
 .toolbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background: #1976d2;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
   margin-bottom: 24px;
-  flex-wrap: wrap;
-  gap: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .BarraTituloCrd {
+    font-size: 1.5rem;
+    font-weight: 500;
+    padding:  16px 24px;
+  }
 }
 
 .search-container {
   display: flex;
-  gap: 12px; // Slightly reduced gap
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
   flex-wrap: wrap;
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center; // Align items within search container
-  padding: 12px 16px; // Add padding
-  background-color: #f8f9fa; // Light background
-  border-radius: 8px; // Rounded corners
-  border: 1px solid #e9ecef; // Subtle border
+
+  mat-form-field {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  button {
+    height: 52px;
+    padding: 0 30px;
+  }
 }
 
-.search-container mat-form-field {
-  min-width: 200px;
-  margin-bottom: 0; // Remove potential bottom margin from form fields
+.actions-container {
+  display:inline-flex;
+  gap: 15px;
+  margin-bottom: 25px;
+
+  button {
+    min-width: 120px;
+    height: 40px;
+
+    &.mat-raised-button {
+      &[color="primary"] {
+        background: #1976d2;
+        &:hover { background: darken(#1976d2, 10%); }
+      }
+      &[color="accent"] {
+        background: #ff4081;
+        &:hover { background: darken(#ff4081, 10%); }
+      }
+      &[color="warn"] {
+        background: #f44336;
+        &:hover { background: darken(#f44336, 10%); }
+      }
+    }
+  }
 }
 
-.table-container {
-  margin-top: 24px; // Increased top margin
-  background-color: #ffffff; // White background
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // Softer shadow
-  padding: 0; // Remove padding here, add to cells
-  overflow: hidden; // Keep content within border radius
-  border: 1px solid #dee2e6; // Subtle border around the table
-  max-width: 1000px; // Set a max-width for centering
-  margin: 24px auto; // Center the block and add vertical margin
+::ng-deep {
+  .dark {
+    background: rgba(14, 17, 45, 0.445);
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
-  ::ng-deep {
     .ngx-datatable {
-      box-shadow: none; // Remove inner shadow
-
       .datatable-header {
-        background-color: #f8f9fa; // Light header background
-        border-bottom: 1px solid #dee2e6; // Subtle border below header
+        background: #eaeaea;
+        border-bottom: 2px solid #e9ecef;
 
         .datatable-header-cell {
-          color: #0d166dbc;
-          font-weight: 600;
-          padding: 12px 15px; // Consistent padding
-          text-align: left; // Align header text
-          font-size: 0.9rem; // Slightly smaller font for header
+          color: #495057;
+          font-weight: 500;
+          padding: 30px;
         }
       }
 
       .datatable-body {
         .datatable-body-row {
-          &:nth-child(odd) { // Style for odd rows
-            background-color: #f8f9fa; // Very light grey
-          }
-          &:nth-child(even) { // Style for even rows
-            background-color: #e9ecef; // Slightly darker grey
-          }
-
           &:hover {
-            background-color: #dee2e6; // Even darker hover
+            background: #f8f9fa;
           }
 
           &.active {
-            background-color: #cfe2ff; // Highlight color for selected row
-            // Outline or border for active row can also be added
+            background: #e3f2fd;
           }
 
           .datatable-body-cell {
-            padding: 12px 15px; // Consistent padding
-            color: #202b37; // Darker text color
-            text-align: left; // Align cell text
-            font-size: 0.95rem; // Slightly smaller font for cells
-            border-bottom: 1px solid #e9ecef; // Subtle border between rows
-
-            // Last cell in the row (for actions) might need different alignment
-            &:last-child {
-                text-align: center; // Center action buttons
-            }
+            padding: 25px;
+            color: #212529;
           }
         }
-         // Remove last row's bottom border
-        .datatable-body-row:last-child .datatable-body-cell {
-             border-bottom: none;
-        }
-
-      }
-
-      // Remove default striped class styles if they conflict
-      &.striped .datatable-body-row:nth-child(even) {
-          background-color: transparent; // Or match our custom even color
       }
     }
   }
-}
 
-// Botones de acción
-.action-buttons {
-  display: flex;
-  gap: 8px; // Keep a slightly larger gap for clarity
-  justify-content: center;
-  align-items: center;
+  .mat-mdc-form-field {
+    .mat-mdc-form-field-flex {
+      background: white;
+    }
 
-  button {
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: scale(1.1);
+    .mat-mdc-text-field-wrapper {
+      border-radius: 10px;
     }
   }
-}
 
-// General button styling improvement
-button[mat-raised-button] {
-    border-radius: 4px;
-    padding: 0 16px;
-    .mat-icon {
-        margin-right: 4px;
-    }
-}
-
-// Responsive adjustments
-@media (max-width: 768px) {
-  .toolbar-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-container {
-    flex-direction: column;
-    width: 100%; // Make search container take full width
-    justify-content: flex-start;
-  }
-
-  .search-container mat-form-field {
-      min-width: unset;
-      width: 100%;
-  }
-
-  .table-container {
-    padding: 8px;
-  }
-
-  .card-body {
-      padding: 16px;
-  }
-
-  .card-header {
-      padding: 12px 16px;
-      font-size: 1.2rem;
+  .mat-mdc-select-panel {
+    border-radius: 1px;
   }
 }
