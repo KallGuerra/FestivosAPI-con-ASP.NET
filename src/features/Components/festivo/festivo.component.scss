@@ -1,134 +1,183 @@
-// variables.scss
-$color-primario: #000B58;
-$color-secundario: #003161;
-$color-enfasis: #006A67;
-$color-fondo: #FFF4B7;
+.container-fluid {
+  padding: 24px;
+  background-color: #ffffff00; // Light background color
+  min-height: 100vh;
+}
 
-$radius-base: 8px;
-$shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.15);
+.card {
+  background-color: #4a9ca650;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+  overflow: hidden; // Ensure borders are within shadow
+}
 
-// Estilo general del formulario y botones
-.busqueda-container {
-  background-color: $color-fondo;
-  padding: 1rem;
-  border-radius: $radius-base;
-  box-shadow: $shadow-soft;
+.card-header {
+  background-color: #007bff; // Primary color header
+  color: white;
+  padding: 16px 24px;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
 
-  mat-form-field {
-    background-color: white;
-    border-radius: $radius-base;
-    padding: 0.5rem;
+.card-body {
+  padding: 24px;
+}
+
+.toolbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.search-container {
+  display: flex;
+  gap: 12px; // Slightly reduced gap
+  flex-wrap: wrap;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center; // Align items within search container
+  padding: 12px 16px; // Add padding
+  background-color: #f8f9fa; // Light background
+  border-radius: 8px; // Rounded corners
+  border: 1px solid #e9ecef; // Subtle border
+}
+
+.search-container mat-form-field {
+  min-width: 200px;
+  margin-bottom: 0; // Remove potential bottom margin from form fields
+}
+
+.table-container {
+  margin-top: 24px; // Increased top margin
+  background-color: #ffffff; // White background
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); // Softer shadow
+  padding: 0; // Remove padding here, add to cells
+  overflow: hidden; // Keep content within border radius
+  border: 1px solid #dee2e6; // Subtle border around the table
+  max-width: 1000px; // Set a max-width for centering
+  margin: 24px auto; // Center the block and add vertical margin
+
+  ::ng-deep {
+    .ngx-datatable {
+      box-shadow: none; // Remove inner shadow
+
+      .datatable-header {
+        background-color: #f8f9fa; // Light header background
+        border-bottom: 1px solid #dee2e6; // Subtle border below header
+
+        .datatable-header-cell {
+          color: #0d166dbc;
+          font-weight: 600;
+          padding: 12px 15px; // Consistent padding
+          text-align: left; // Align header text
+          font-size: 0.9rem; // Slightly smaller font for header
+        }
+      }
+
+      .datatable-body {
+        .datatable-body-row {
+          &:nth-child(odd) { // Style for odd rows
+            background-color: #f8f9fa; // Very light grey
+          }
+          &:nth-child(even) { // Style for even rows
+            background-color: #e9ecef; // Slightly darker grey
+          }
+
+          &:hover {
+            background-color: #dee2e6; // Even darker hover
+          }
+
+          &.active {
+            background-color: #cfe2ff; // Highlight color for selected row
+            // Outline or border for active row can also be added
+          }
+
+          .datatable-body-cell {
+            padding: 12px 15px; // Consistent padding
+            color: #202b37; // Darker text color
+            text-align: left; // Align cell text
+            font-size: 0.95rem; // Slightly smaller font for cells
+            border-bottom: 1px solid #e9ecef; // Subtle border between rows
+
+            // Last cell in the row (for actions) might need different alignment
+            &:last-child {
+                text-align: center; // Center action buttons
+            }
+          }
+        }
+         // Remove last row's bottom border
+        .datatable-body-row:last-child .datatable-body-cell {
+             border-bottom: none;
+        }
+
+      }
+
+      // Remove default striped class styles if they conflict
+      &.striped .datatable-body-row:nth-child(even) {
+          background-color: transparent; // Or match our custom even color
+      }
+    }
   }
+}
+
+// Botones de acción
+.action-buttons {
+  display: flex;
+  gap: 8px; // Keep a slightly larger gap for clarity
+  justify-content: center;
+  align-items: center;
 
   button {
-    font-weight: 600;
-    border-radius: $radius-base;
-    mat-icon {
-      margin-right: 0.5rem;
-    }
-  }
-}
+    transition: transform 0.2s ease;
 
-button.mat-raised-button {
-  box-shadow: $shadow-soft;
-  border-radius: $radius-base;
-}
-
-button[color="primary"] {
-  background-color: $color-primario;
-  color: white;
-
-  &:hover {
-    background-color: darken($color-primario, 5%);
-  }
-}
-
-button[color="accent"] {
-  background-color: $color-enfasis;
-  color: white;
-
-  &:hover {
-    background-color: darken($color-enfasis, 5%);
-  }
-}
-
-::ng-deep ngx-datatable {
-  border-radius: 12px;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 14px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-
-  .datatable-header {
-    background-color: #003161;
-    color: #FFF4B7;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-
-  .datatable-header-cell {
-    padding: 12px;
-    font-size: 13px;
-    border-right: 1px solid #00284d;
-  }
-
-  .datatable-body-row {
-    background-color: white;
-    transition: background-color 0.3s ease;
-  }
-
-  .datatable-body-row:hover {
-    background-color: #f3f9ff;
-  }
-
-  .datatable-body-cell {
-    padding: 10px;
-    color: #000;
-    border-bottom: 1px solid #e0e0e0;
-  }
-
-  .datatable-footer {
-    background-color: #000B58;
-    color: #FFF4B7;
-    padding: 8px 12px;
-    font-size: 18px;
-  }
-
-  .datatable-row-wrapper {
-    border-left: 4px solid transparent;
-  }
-
-  .datatable-row-wrapper.selected {
-    border-left: 4px solid #006A67;
-    background-color: #e9f7f4;
-  }
-
-  .datatable-scroll {
-    scrollbar-color: #006A67 #e0e0e0;
-    scrollbar-width: thin;
-  }
-}
-
-
-
-ngx-datatable.material {
-  background-color: white;
-  border-radius: $radius-base;
-  box-shadow: $shadow-soft;
-
-  .datatable-header {
-    background-color: $color-secundario;
-    color: white;
-    font-weight: bold;
-  }
-
-  .datatable-body-row {
     &:hover {
-      background-color: lighten($color-fondo, 10%);
+      transform: scale(1.1);
     }
   }
+}
 
-  .datatable-row-center {
-    font-size: 14px;
+// General button styling improvement
+button[mat-raised-button] {
+    border-radius: 4px;
+    padding: 0 16px;
+    .mat-icon {
+        margin-right: 4px;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .toolbar-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container {
+    flex-direction: column;
+    width: 100%; // Make search container take full width
+    justify-content: flex-start;
+  }
+
+  .search-container mat-form-field {
+      min-width: unset;
+      width: 100%;
+  }
+
+  .table-container {
+    padding: 8px;
+  }
+
+  .card-body {
+      padding: 16px;
+  }
+
+  .card-header {
+      padding: 12px 16px;
+      font-size: 1.2rem;
   }
 }

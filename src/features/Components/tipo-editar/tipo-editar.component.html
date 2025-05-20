@@ -1,0 +1,21 @@
+<h2 mat-dialog-title class="text-[#000B58] font-bold text-2xl">
+  {{ datos.encabezado }}
+</h2>
+
+<mat-dialog-content class="pt-4 pb-2">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nombre del tipo</mat-label>
+    <input matInput [(ngModel)]="datos.tipo.nombre" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="pt-4">
+  <button mat-raised-button color="primary"
+    [mat-dialog-close]="datos.tipo"
+    style="background-color: #006A67; color: white; margin-right: 8px;">
+    <mat-icon>check</mat-icon> Aceptar
+  </button>
+  <button mat-stroked-button (click)="cerrar()" style="color: #000B58; border-color: #000B58;">
+    <mat-icon>cancel</mat-icon> Cancelar
+  </button>
+</mat-dialog-actions>

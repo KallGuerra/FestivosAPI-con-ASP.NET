@@ -1,55 +1,41 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReferenciasMaterialModule } from '../../../Shared/Modules/referencias-material.module';
-import { NgFor } from '@angular/common';
-import { FestivoService } from '../../../Core/servicios/festivo.service';
-import { Festivo } from '../../../Shared/Entities/Festivo';
-import {
-  ColumnMode,
-  DatatableComponent,
-  NgxDatatableModule,
-  SelectionType,
-} from '@swimlane/ngx-datatable';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FestivoEditarComponent } from '../festivo-editar/festivo-editar.component';
-import { DecidirComponent } from '../../../Shared/Components/decidir/decidir.component';
-import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Festivo } from '../../../Shared/Entities/Festivo';
+import { FestivoService } from '../../../Core/servicios/festivo.service';
 import { TipoService } from '../../../Core/servicios/tipo.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { ReferenciasMaterialModule } from '../../../Shared/Modules/referencias-material.module';
+import { FestivoEditarComponent } from '../festivo-editar/festivo-editar.component';
+import { DatatableComponent, ColumnMode, SelectionType } from '@swimlane/ngx-datatable';
+import { DecidirComponent } from '../../../Shared/Components/decidir/decidir.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @Component({
   selector: 'app-festivo',
   imports: [
     ReferenciasMaterialModule,
-    NgFor,
+    CommonModule,
     FormsModule,
-    NgxDatatableModule,
-    RouterModule,
+    NgxDatatableModule
   ],
   templateUrl: './festivo.component.html',
-  styleUrl: './festivo.component.scss',
+  styleUrl: './festivo.component.scss'
 })
-export class FestivoComponent implements OnInit {
+export class FestivoComponent implements OnInit, AfterViewInit{
+
   @ViewChild(DatatableComponent) tabla!: DatatableComponent;
+  @ViewChild('actionsTemplate') actionsTemplate: any;
   public readonly TAMANO: number = 10;
-  public listaTiposFestivo: any[] = [];
+  public columnas: any[] = [];
 
   public opcionBusqueda: number = -1;
   public textoBusqueda: string = '';
   public opcionesBusqueda: string[] = ['Nombre', 'Tipo', 'Mes', 'Dia'];
 
   public festivos: Festivo[] = [];
-  public columnas = [
-    { name: 'Día', prop: 'dia' },
-    { name: 'Mes', prop: 'mes' },
-    { name: 'Nombre', prop: 'nombre' },
-    { name: 'Días Pascua', prop: 'diasPascua' },
-    { name: 'Tipo', prop: 'idTipo' },
-  ];
-
-  public modoColumna = ColumnMode;
-  public tipoSeleccion = SelectionType;
+  public modoColumna = ColumnMode.force;
+  public tipoSeleccion = SelectionType.single;
   public festivoEscogido: Festivo | undefined;
   public indiceFestivoEscogido: number = -1;
 
@@ -61,6 +47,16 @@ export class FestivoComponent implements OnInit {
 
   ngOnInit(): void {
     this.listar(-1);
+  }
+
+  ngAfterViewInit() {
+    this.columnas = [
+      { name: 'Día', prop: 'dia', width: 100 },
+      { name: 'Mes', prop: 'mes', width: 80 },
+      { name: 'Nombre', prop: 'nombre', width: 200 },
+      { name: 'Días Pascua', prop: 'diasPascua', width: 100 },
+      { name: 'Tipo', prop: 'idTipo', width: 100 },
+    ];
   }
 
   escoger(event: any) {
@@ -168,14 +164,14 @@ export class FestivoComponent implements OnInit {
     });
   }
 
-  public modificar() {
-    if (this.festivoEscogido) {
+  public modificar(festivo: Festivo) {
+    if (festivo) {
       const ventanaModal = this.dialogService.open(FestivoEditarComponent, {
         width: '500px',
         height: '300px',
         data: {
-          encabezado: `Editando el Festivo ${this.festivoEscogido.nombre}`,
-          festivo: this.festivoEscogido,
+          encabezado: `Editando el Festivo ${festivo.nombre}`,
+          festivo: festivo,
         },
         disableClose: true,
       });
@@ -184,44 +180,12 @@ export class FestivoComponent implements OnInit {
           if (datos) {
             this.servicioFestivo.modificar(datos.festivo).subscribe({
               next: (response) => {
-                this.festivos[this.indiceFestivoEscogido] = response;
-              },
-              error: (error) => {
-                window.alert(error.message);
-              },
-            });
-          }
-        },
-        error: (error) => {
-          window.alert(error.message);
-        },
-      });
-    } else {
-      window.alert('Debe escoger alguna de las selecciones listadas');
-    }
-  }
-
-  verificarEliminar() {
-    if (this.festivoEscogido) {
-      const ventanaModal = this.dialogService.open(DecidirComponent, {
-        width: '300px',
-        height: '200px',
-        data: {
-          encabezado: `Está seguro de eliminar el Festivo ${this.festivoEscogido.nombre}?`,
-          id: this.festivoEscogido.Id,
-        },
-        disableClose: true,
-      });
-
-      ventanaModal.afterClosed().subscribe({
-        next: (datos) => {
-          if (datos) {
-            this.servicioFestivo.eliminar(datos.id).subscribe({
-              next: (response) => {
-                if (response) {
-                  this.listar(-1);
-                } else {
-                  window.alert('No se puede eliminar la Selección');
+                // Find the index of the modified festivo and update it in the local array
+                const index = this.festivos.findIndex(f => f.Id === response.Id);
+                if (index !== -1) {
+                  this.festivos[index] = response;
+                  // Manually trigger change detection if needed, though ngx-datatable often handles this
+                  this.festivos = [...this.festivos]; // Create new array reference
                 }
               },
               error: (error) => {
@@ -234,8 +198,50 @@ export class FestivoComponent implements OnInit {
           window.alert(error.message);
         },
       });
-    } else {
-      window.alert('Debe escoger alguna de las selecciones listadas');
     }
   }
+
+  verificarEliminar(id: number): void {
+    if (this.festivoEscogido) {
+      const ventanaModal = this.dialogService.open(DecidirComponent,
+        {
+          width: "300px",
+          height: "200px",
+          data: {
+            encabezado: `Está seguro de eliminar la Selección ${this.festivoEscogido.nombre}?`,
+            id: this.festivoEscogido.Id
+          },
+          disableClose: true
+        });
+
+      ventanaModal.afterClosed().subscribe({
+        next: (resultado) => {
+          if (resultado) {
+            this.servicioFestivo.eliminar(resultado.id).subscribe({
+              next: response => {
+                if (response) {
+                  this.listar(-1);
+                }
+                else{
+                  window.alert("No se puede eliminar la Selección");
+                }
+              },
+              error: error => {
+                window.alert(error.message);
+              }
+            });
+          } else if (resultado === false) {
+              console.log('Eliminación cancelada por el usuario');
+          }
+        },
+        error: error => {
+          window.alert('Error al cerrar el diálogo: ' + (error.error?.message || error.message));
+        }
+      });
+    }
+    else {
+      window.alert("Debe escoger alguna de las selecciones listadas");
+    }
+  }
+
 }

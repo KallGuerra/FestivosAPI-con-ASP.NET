@@ -1,75 +1,46 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Festivo } from '../../../Shared/Entities/Festivo';
-import { Tipo } from '../../../Shared/Entities/Tipo';
-import { FormsModule } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ReferenciasMaterialModule } from '../../../Shared/Modules/referencias-material.module';
-import { CommonModule } from '@angular/common';
+import { Festivo } from '../../../Shared/Entities/Festivo';
 import { FestivoService } from '../../../Core/servicios/festivo.service';
-
-export interface DatosEdicionFestivo {
-  encabezado: string;
-  festivo: Festivo;
-  tiposFestivo: Tipo[];
-}
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-festivo-editar',
-  imports: [FormsModule, ReferenciasMaterialModule, CommonModule],
+  imports: [ReferenciasMaterialModule, ReactiveFormsModule],
   templateUrl: './festivo-editar.component.html',
-  styleUrl: './festivo-editar.component.scss',
+  styleUrl: './festivo-editar.component.scss'
 })
-export class FestivoEditarComponent implements OnInit {
-  public festivo: Festivo;
-  public tiposFestivo: Tipo[];
+export class FestivoEditarComponent {
+  form: FormGroup;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public datos: DatosEdicionFestivo,
-    public ventanaDialogo: MatDialogRef<FestivoEditarComponent>,
-    private servicioFestivo: FestivoService
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<FestivoEditarComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { festivo: Festivo },
+    private festivoService: FestivoService
   ) {
-    this.festivo = { ...datos.festivo };
-    this.tiposFestivo = [...datos.tiposFestivo];
-
-    // Inicializar el tipo si no existe
-    if (!this.festivo.idTipo && this.tiposFestivo.length > 0) {
-      this.festivo.idTipo = this.tiposFestivo[0].Id;
-    }
+    this.form = this.fb.group({
+      id: [data.festivo?.Id || 0],
+      nombre: [data.festivo?.nombre || '', Validators.required],
+      dia: [data.festivo?.dia || 0],
+      mes: [data.festivo?.mes || 0],
+      diasPascua: [data.festivo?.diasPascua || 0],
+      idTipo: [data.festivo?.idTipo || 0, Validators.required]
+    });
   }
 
-  ngOnInit() {
-    // No necesitamos ExtraerIdTipo() ya que el tipo se maneja directamente
+  guardar(): void {
+    const festivo: Festivo = this.form.value;
+
+    const obs = festivo.Id === 0
+      ? this.festivoService.agregar(festivo)
+      : this.festivoService.modificar(festivo);
+
+    obs.subscribe(() => this.dialogRef.close(true));
   }
 
-  public validarFormulario(): boolean {
-    if (!this.festivo.nombre || this.festivo.nombre.trim() === '') {
-      window.alert('El nombre del festivo es requerido');
-      return false;
-    }
-    if (this.festivo.dia < 1 || this.festivo.dia > 31) {
-      window.alert('El día debe estar entre 1 y 31');
-      return false;
-    }
-    if (this.festivo.mes < 1 || this.festivo.mes > 12) {
-      window.alert('El mes debe estar entre 1 y 12');
-      return false;
-    }
-    // Verificar que idTipo sea un número válido y exista en la lista de tipos
-    if (!this.festivo.idTipo ||
-        isNaN(Number(this.festivo.idTipo)) ||
-        !this.tiposFestivo.some(t => t.Id === this.festivo.idTipo)) {
-      window.alert('Debe seleccionar un tipo de festivo válido');
-      return false;
-    }
-    return true;
-  }
-
-  public cerrar() {
-    if (this.validarFormulario()) {
-      console.log('Festivo a enviar:', this.festivo);
-      this.ventanaDialogo.close({
-        festivo: this.festivo
-      });
-    }
+  cancelar(): void {
+    this.dialogRef.close(false);
   }
 }

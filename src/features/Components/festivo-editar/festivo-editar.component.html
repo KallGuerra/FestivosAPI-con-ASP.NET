@@ -1,52 +1,38 @@
-<div mat-dialog-content class="formulario-festivo">
-  <h2 class="titulo-dialogo">{{ datos.encabezado }}</h2>
+<p>festivo-editar works!</p>
+<h1 mat-dialog-title>{{ form.value.id === 0 ? 'Agregar Festivo' : 'Editar Festivo' }}</h1>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Nombre del Festivo</mat-label>
-    <input matInput [(ngModel)]="festivo.nombre" required #nombreInput="ngModel">
-    <mat-error *ngIf="nombreInput.invalid && (nombreInput.dirty || nombreInput.touched)">
-      El nombre del festivo es requerido
-    </mat-error>
-  </mat-form-field>
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre" required />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Día</mat-label>
-    <input type="number" matInput [(ngModel)]="festivo.dia" min="1" max="31" required #diaInput="ngModel">
-    <mat-error *ngIf="diaInput.invalid && (diaInput.dirty || diaInput.touched)">
-      El día debe estar entre 1 y 31
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Día</mat-label>
+      <input matInput type="number" formControlName="dia" />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Mes</mat-label>
-    <input type="number" matInput [(ngModel)]="festivo.mes" min="1" max="12" required #mesInput="ngModel">
-    <mat-error *ngIf="mesInput.invalid && (mesInput.dirty || mesInput.touched)">
-      El mes debe estar entre 1 y 12
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Mes</mat-label>
+      <input matInput type="number" formControlName="mes" />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Tipo de Festivo</mat-label>
-    <mat-select [(ngModel)]="festivo.idTipo" name="idTipo" required #tipoSelect="ngModel">
-      <mat-option *ngFor="let tipo of tiposFestivo" [value]="tipo.Id">
-        {{ tipo.nombre }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngIf="tipoSelect.invalid && (tipoSelect.dirty || tipoSelect.touched)">
-      Debe seleccionar un tipo de festivo
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Días Pascua</mat-label>
+      <input matInput type="number" formControlName="diasPascua" />
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Días respecto a Pascua</mat-label>
-    <input type="number" matInput [(ngModel)]="festivo.diasPascua" min="0" required #diasPascuaInput="ngModel">
-    <mat-error *ngIf="diasPascuaInput.invalid && (diasPascuaInput.dirty || diasPascuaInput.touched)">
-      Los días respecto a Pascua son requeridos
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Tipo ID</mat-label>
+      <input matInput type="number" formControlName="idTipo" required />
+    </mat-form-field>
+  </form>
 </div>
 
 <div mat-dialog-actions align="end">
-  <button mat-raised-button color="primary" (click)="cerrar()">Aceptar</button>
-  <button mat-stroked-button color="primary" (click)="ventanaDialogo.close()">Cancelar</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="guardar()" [disabled]="form.invalid">
+    Guardar
+  </button>
 </div>

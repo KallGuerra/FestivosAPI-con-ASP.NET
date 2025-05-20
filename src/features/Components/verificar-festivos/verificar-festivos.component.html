@@ -1,0 +1,110 @@
+<div class="container">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <mat-card-title class="main-title">
+        <mat-icon class="title-icon">event</mat-icon>
+        Consulta y Verificación de Festivos
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Consulta por Año -->
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">calendar_month</mat-icon>
+            Consultar Festivos por Año
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="search-section">
+            <mat-form-field appearance="outline" class="year-field">
+              <mat-label>Año</mat-label>
+              <input matInput type="number" [(ngModel)]="anio" min="1900" max="2100" />
+              <mat-icon matSuffix>calendar_today</mat-icon>
+            </mat-form-field>
+
+            <button mat-raised-button color="primary" (click)="obtenerFestivosPorAnio()" class="action-button">
+              <mat-icon>search</mat-icon>
+              Ver Festivos
+            </button>
+          </div>
+
+          <div *ngIf="festivosAnio.length > 0" class="results-container">
+            <mat-list class="festivos-list">
+              <mat-list-item *ngFor="let f of festivosAnio" class="festivo-item">
+                <mat-icon matListItemIcon color="primary">event</mat-icon>
+                <div matListItemTitle>{{ f.fecha | date: 'fullDate' }}</div>
+                <div matListItemLine class="festivo-nombre">{{ f.nombre }}</div>
+              </mat-list-item>
+            </mat-list>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Verificación Individual -->
+      <mat-card class="section-card">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon class="section-icon">search</mat-icon>
+            Verificación de Fecha Específica
+          </mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="date-inputs">
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-label>Día</mat-label>
+              <input matInput type="number" [(ngModel)]="dia" min="1" max="31" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-label>Mes</mat-label>
+              <input matInput type="number" [(ngModel)]="mes" min="1" max="12" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="date-field">
+              <mat-label>Año</mat-label>
+              <input matInput type="number" [(ngModel)]="anio" min="1900" max="2100" />
+            </mat-form-field>
+
+            <button mat-raised-button color="accent" (click)="verificarFestivo()" class="action-button">
+              <mat-icon>check_circle</mat-icon>
+              Verificar
+            </button>
+          </div>
+
+          <div *ngIf="fechaVerificada" class="result-container">
+            <mat-card class="result-card success">
+              <mat-card-content>
+                <div class="result-icon">
+                  <mat-icon>celebration</mat-icon>
+                </div>
+                <div class="result-text">
+                  <h3>¡Es festivo!</h3>
+                  <p>{{ fechaVerificada.fecha | date: 'fullDate' }}</p>
+                  <p class="festivo-nombre">{{ fechaVerificada.nombre }}</p>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div *ngIf="!fechaVerificada && (dia && mes && anio)" class="result-container">
+            <mat-card class="result-card error">
+              <mat-card-content>
+                <div class="result-icon">
+                  <mat-icon>event_busy</mat-icon>
+                </div>
+                <div class="result-text">
+                  <h3>No es festivo</h3>
+                  <p>{{ dia }}/{{ mes }}/{{ anio }}</p>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-card-content>
+  </mat-card>
+</div>

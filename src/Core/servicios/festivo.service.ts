@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../Environments/Environment';
 import { Festivo } from '../../Shared/Entities/Festivo';
+import { FestivoCalculadoDto } from '../../Shared/Entities/verificarDto'
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +26,7 @@ export class FestivoService {
   }
 
   public agregar(Festivo: Festivo): Observable<Festivo> {
-    console.log('Objeto Festivo enviado a la API:', JSON.stringify(Festivo, null, 2));
-    return this.http.post<Festivo>(`${this.url}agregar`, Festivo, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return this.http.post<Festivo>(`${this.url}agregar`, Festivo)
   }
 
   public modificar(Festivo: Festivo): Observable<Festivo> {
@@ -39,6 +35,14 @@ export class FestivoService {
 
   public eliminar(idFestivo: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.url}eliminar/${idFestivo}`);
+  }
+
+  public festivosPorAnio(anio: number): Observable<FestivoCalculadoDto[]> {
+    return this.http.get<FestivoCalculadoDto[]>(`${this.url}festivosPorAno/${anio}`);
+  }
+
+  public esFestivo(dia: number, mes: number, anio: number): Observable<FestivoCalculadoDto> {
+    return this.http.get<FestivoCalculadoDto>(`${this.url}esFestivo/${dia}/${mes}/${anio}`);
   }
 
 }
