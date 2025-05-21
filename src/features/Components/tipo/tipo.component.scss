@@ -1,22 +1,124 @@
-table {
+.page-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00000060 0%, #033a888a 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.tipo-container {
+  width: 100%;
+  max-width: 1200px;
   border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  background: white;
+
+  mat-card-header {
+    margin-bottom: 1.5rem;
+
+    mat-card-title {
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    mat-card-subtitle {
+      font-size: 1rem;
+      color: #7f8c8d;
+    }
+  }
+}
+
+.actions-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  .action-button {
+    min-width: 180px;
+    height: 48px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 
-  th {
-    background-color: #000B58 !important;
-    color: white !important;
+  .material-table {
+    width: 100%;
+
+    th.mat-header-cell {
+      background: #f8f9fa;
+      color: #495057;
+      font-weight: 600;
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #e9ecef;
+    }
+
+    td.mat-cell {
+      padding: 1rem;
+      color: #2c3e50;
+      font-size: 0.95rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .hover-row {
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+
+      button {
+        transition: transform 0.2s ease;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .page-background {
+    padding: 1rem;
   }
 
-  td {
-    padding: 12px;
-    font-size: 15px;
+  .actions-section {
+    flex-direction: column;
+
+    .action-button {
+      width: 100%;
+    }
   }
 
-  tr:hover {
-    background-color: #e6f4f1 !important;
-  }
-
-  button.mat-icon-button {
-    margin-right: 5px;
+  .table-container {
+    overflow-x: auto;
   }
 }

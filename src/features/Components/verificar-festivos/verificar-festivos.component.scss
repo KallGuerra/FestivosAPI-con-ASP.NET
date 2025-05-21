@@ -1,7 +1,10 @@
 .container {
-  padding: 2rem;
-  background: linear-gradient(135deg, #0b151f 0%, #2daab0 100%);
   min-height: 100vh;
+  background: linear-gradient(135deg, #00000060 0%, #033a888a 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .main-card {

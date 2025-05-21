@@ -1,45 +1,61 @@
-<div class="p-6 bg-[#003161] min-h-screen text-white">
-  <h1 class="text-3xl font-bold mb-6 text-[#FFF4B7]">Gestión de Tipos de Festivo</h1>
+<div class="page-background">
+  <mat-card class="tipo-container">
+    <mat-card-header>
+      <mat-card-title>Gestión de Tipos de Festivo</mat-card-title>
+      <mat-card-subtitle>Administración de categorías de festivos</mat-card-subtitle>
+    </mat-card-header>
 
-  <button mat-raised-button (click)="agregar()"
-    style="background-color: #000B58; color: white; margin-bottom: 20px ">
-    <mat-icon>add</mat-icon> Agregar Tipo
-  </button>
-
-  <button mat-raised-button color="accent" routerLink="/verificarFestivos" style="margin-bottom: 20px">Verificar Festivo</button>
-
-  <button mat-stroked-button color="accent" routerLink="/festivos"style="margin-bottom: 20px">Festivos</button>
-
-
-  <table mat-table [dataSource]="tipos" class="mat-elevation-z8 w-full rounded-xl overflow-hidden bg-white text-black">
-
-    <!-- ID -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef class="bg-[#000B58] text-white">ID</th>
-      <td mat-cell *matCellDef="let t">{{ t.id }}</td>
-    </ng-container>
-
-    <!-- Nombre -->
-    <ng-container matColumnDef="nombre">
-      <th mat-header-cell *matHeaderCellDef class="bg-[#000B58] text-white">Nombre</th>
-      <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
-    </ng-container>
-
-    <!-- Acciones -->
-    <ng-container matColumnDef="acciones">
-      <th mat-header-cell *matHeaderCellDef class="bg-[#000B58] text-white">Acciones</th>
-      <td mat-cell *matCellDef="let t">
-        <button mat-icon-button color="primary" (click)="editar(t)">
-          <mat-icon>edit</mat-icon>
+    <mat-card-content>
+      <!-- Acciones principales -->
+      <div class="actions-section">
+        <button mat-raised-button color="primary" (click)="agregar()" class="action-button">
+          <mat-icon>add_circle</mat-icon>
+          Nuevo Tipo
         </button>
-        <button mat-icon-button color="warn" (click)="eliminar(t.id)">
-          <mat-icon>delete</mat-icon>
+        <button mat-raised-button color="accent" routerLink="/verificarFestivos" class="action-button">
+          <mat-icon>event_available</mat-icon>
+          Verificar Festivo
         </button>
-      </td>
-    </ng-container>
+        <button mat-raised-button color="accent" routerLink="/festivo" class="action-button">
+          <mat-icon>calendar_today</mat-icon>
+          Gestión de Festivos
+        </button>
+      </div>
 
-    <!-- Filas -->
-    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
-  </table>
+      <!-- Tabla de tipos -->
+      <div class="table-container">
+        <table mat-table [dataSource]="tipos" class="material-table">
+          <!-- ID -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let t">{{ t.id }}</td>
+          </ng-container>
+
+          <!-- Nombre -->
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let t">{{ t.nombre }}</td>
+          </ng-container>
+
+          <!-- Acciones -->
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let t">
+              <div class="action-buttons">
+                <button mat-icon-button color="primary" (click)="editar(t)" matTooltip="Editar tipo">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="eliminar(t.id)" matTooltip="Eliminar tipo">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: columnas;" class="hover-row"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>

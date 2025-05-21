@@ -1,3 +1,4 @@
+import { id } from '@swimlane/ngx-datatable';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ReferenciasMaterialModule } from '../../../Shared/Modules/referencias-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -54,8 +55,7 @@ export class FestivoEditarComponent implements OnInit {
 
     if (tipoSeleccionado) {
       this.datos.festivo.tipo = tipoSeleccionado;
-      this.datos.festivo.idTipo = tipoSeleccionado.Id;
-      window.alert(`Has seleccionado el tipo: ${tipoSeleccionado.nombre}`);
+      this.datos.festivo.idTipo = tipoSeleccionado.id;
     } else {
       window.alert('Tipo no encontrado');
     }

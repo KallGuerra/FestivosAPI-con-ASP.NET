@@ -35,7 +35,7 @@ export class FestivoComponent implements OnInit {
     { name: "Mes", prop: "mes" },
     { name: "Nombre", prop: "nombre" },
     { name: "Dias de pascua", prop: "diasPascua"},
-    { name: "Tipo", prop: "tipo.nombre"},
+    { name: "Tipos", prop: "idTipo"}
   ];
 
   public modoColumna = ColumnMode;
@@ -55,14 +55,15 @@ export class FestivoComponent implements OnInit {
       this.listarTipos();
   }
 
-
-
   public listar(idSeleccionado: number){
     this.servicioFestivo.listar().subscribe({
       next: Response => {
-        this.festivos = Response;
+        this.festivos = Response.map(festivo => ({
+          ...festivo,
+          tipo: festivo.tipo || { nombre: '' }
+        }));
         if (idSeleccionado >= 0) {
-          this.indiceFestivoEscogido = this.festivos.findIndex( festivos => festivos.Id == idSeleccionado);
+          this.indiceFestivoEscogido = this.festivos.findIndex( festivos => festivos.id == idSeleccionado);
           this.festivoEscogido = this.festivos[this.indiceFestivoEscogido];
           setTimeout(() => {
             this.tabla.offset = Math.floor(this.indiceFestivoEscogido / this.TAMANO);
@@ -127,7 +128,7 @@ export class FestivoComponent implements OnInit {
 
           this.servicioFestivo.agregar(datos.festivo).subscribe({
             next: (response: Festivo) => {
-              this.listar(response.Id);
+              this.listar(response.id);
               window.alert("Festivo agregado exitosamente");
             },
             error: (error) => {
@@ -145,16 +146,87 @@ export class FestivoComponent implements OnInit {
 
 
   public modificar(): void {
+    if (this.festivoEscogido) {
+      const ventanaModal = this.dialogService.open(FestivoEditarComponent,
+        {
+          width: "500px",
+          height: "400px",
+          data: {
+            encabezado: `Editando el Festivo ${this.festivoEscogido.nombre}`,
+            festivo: this.festivoEscogido,
+            tipos: this.tipo
+          },
+          disableClose: true
+        });
+      ventanaModal.afterClosed().subscribe({
+        next: datos => {
+          if (datos) {
+            datos.festivo.id = datos.festivo.idTipo;
+            this.servicioFestivo.modificar(datos.festivo).subscribe(
+              {
+                next: response => {
+                  this.festivos[this.indiceFestivoEscogido] = response;
+                }
+                ,
+                error: error => {
+                  window.alert(error.message);
+                }
+              }
+            );
+          }
+        },
+        error: error => {
+          window.alert(error.message);
+        }
+      });
+    }
+    else {
+      window.alert("Debe escoger alguna de los festivos listados");
+    }
+  }
 
-  }
+  verificarEliminar() {
+    if (this.festivoEscogido) {
+      const ventanaModal = this.dialogService.open(DecidirComponent,
+        {
+          width: "400px",
+          height: "200px",
+          data: {
+            encabezado: `Está seguro de eliminar el festivo ${this.festivoEscogido.nombre}?`,
+            id: this.festivoEscogido.id
+          },
+          disableClose: true
+        });
 
-  public verificarEliminar(): void {
+        ventanaModal.afterClosed().subscribe({
+          next: datos => {
+            if (datos) {
+              this.servicioFestivo.eliminar(datos.id).subscribe({
+                next: response => {
+                  if (response) {
+                    this.listar(-1);
+                  }
+                  else {
+                    window.alert("No se puede eliminar el Festivo");
+                  }
+                },
+                error: error => {
+                  window.alert(error.message);
+                }
+              });
+            }
+          },
+          error: error => {
+            window.alert(error.message);
+          }
+        });
+      }
+      else {
+        window.alert("Debe escoger alguna de los festivos listados");
+      }
+    }
 
-  }
 
-  private eliminar(): void {
-
-  }
 
   escoger(event: any) {
     if (event.type === 'click') {

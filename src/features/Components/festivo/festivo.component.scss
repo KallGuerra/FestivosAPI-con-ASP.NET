@@ -1,115 +1,193 @@
-:host {
-  display:flow-root;
-  padding: 20px;
-  background: #949a9f28;
+/* styles.scss o componente específico */
+
+.page-background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00000060 0%, #033a888a 100%);
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.toolbar-container {
-  background: #1976d2;
-  color: rgb(255, 255, 255);
-  border-radius: 8px;
-  margin-bottom: 24px;
+.app-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 
-  .BarraTituloCrd {
+  .toolbar-icon {
+    margin-right: 12px;
+  }
+
+  .toolbar-title {
     font-size: 1.5rem;
     font-weight: 500;
-    padding:  16px 24px;
+    letter-spacing: 0.5px;
   }
 }
 
-.search-container {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+.festivos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 
-  mat-form-field {
-    flex: 1;
-    min-width: 200px;
-  }
+  mat-card-header {
+    margin-bottom: 1.5rem;
 
-  button {
-    height: 52px;
-    padding: 0 30px;
-  }
-}
+    mat-card-title {
+      font-size: 1.75rem;
+      font-weight: 500;
+      color: #2c3e50;
+    }
 
-.actions-container {
-  display:inline-flex;
-  gap: 15px;
-  margin-bottom: 25px;
-
-  button {
-    min-width: 120px;
-    height: 40px;
-
-    &.mat-raised-button {
-      &[color="primary"] {
-        background: #1976d2;
-        &:hover { background: darken(#1976d2, 10%); }
-      }
-      &[color="accent"] {
-        background: #ff4081;
-        &:hover { background: darken(#ff4081, 10%); }
-      }
-      &[color="warn"] {
-        background: #f44336;
-        &:hover { background: darken(#f44336, 10%); }
-      }
+    mat-card-subtitle {
+      font-size: 1rem;
+      color: #7f8c8d;
     }
   }
 }
 
-::ng-deep {
-  .dark {
-    background: rgba(14, 17, 45, 0.445);
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.search-section {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  align-items: flex-end;
 
-    .ngx-datatable {
+  .search-field {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .search-button {
+    height: 56px;
+    padding: 0 2rem;
+  }
+}
+
+.actions-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+
+  .action-button {
+    min-width: 140px;
+    height: 48px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+  ::ng-deep {
+    .material {
       .datatable-header {
-        background: #eaeaea;
+        background: #f8f9fa;
         border-bottom: 2px solid #e9ecef;
 
         .datatable-header-cell {
           color: #495057;
-          font-weight: 500;
-          padding: 30px;
+          font-weight: 600;
+          padding: 1rem;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
         }
       }
 
       .datatable-body {
         .datatable-body-row {
+          border-bottom: 1px solid #e9ecef;
+          transition: background-color 0.2s ease;
+
           &:hover {
-            background: #f8f9fa;
+            background-color: #f8f9fa;
           }
 
           &.active {
-            background: #e3f2fd;
+            background-color: #e3f2fd;
           }
 
           .datatable-body-cell {
-            padding: 25px;
-            color: #212529;
+            padding: 1rem;
+            color: #2c3e50;
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      .datatable-footer {
+        background: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      .datatable-pager {
+        .pager {
+          li {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            margin: 0 2px;
+            transition: all 0.2s ease;
+
+            &:hover:not(.disabled) {
+              background-color: #e9ecef;
+            }
+
+            &.active {
+              background-color: #007bff;
+              color: white;
+            }
           }
         }
       }
     }
   }
+}
 
-  .mat-mdc-form-field {
-    .mat-mdc-form-field-flex {
-      background: white;
+// Responsive adjustments
+@media (max-width: 768px) {
+  .page-background {
+    padding: 1rem;
+  }
+
+  .search-section {
+    flex-direction: column;
+
+    .search-field {
+      width: 100%;
     }
 
-    .mat-mdc-text-field-wrapper {
-      border-radius: 10px;
+    .search-button {
+      width: 100%;
     }
   }
 
-  .mat-mdc-select-panel {
-    border-radius: 1px;
+  .actions-section {
+    justify-content: center;
+
+    .action-button {
+      width: 100%;
+    }
   }
 }

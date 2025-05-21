@@ -1,5 +1,6 @@
+import { id } from '@swimlane/ngx-datatable';
 
 export interface Tipo{
-  Id: number;
+  id: number;
   nombre: string;
 }

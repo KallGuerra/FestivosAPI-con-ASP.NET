@@ -1,7 +1,7 @@
 import { Tipo } from './Tipo';
 
 export interface Festivo{
-  Id: number;
+  id: number;
   dia: number;
   mes: number;
   nombre: string;
